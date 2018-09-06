@@ -10,16 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func saveAct(_ sender: Any){
+        let textFieldVal = textField.text
+        UserDefaults.standard.set(textFieldVal, forKey: "textField")
     }
 
+    @IBAction func loadAct(_ sender: Any){
+        let textFieldLoadVal = UserDefaults.standard.string(forKey: "textField") ?? "No Saved Value"
+        textField.text = textFieldLoadVal
+    }
 
 }
 
